@@ -41,4 +41,16 @@ func main() {
 	fmt.Println(getSquareArea(5))
 	fmt.Println(getCircleArea(7))
 	fmt.Println(getTrapezoidArea(4, 8, 6))
+
+	//For conditional
+	for i := 10; i > 0; i-- {
+		fmt.Println(i)
+	}
+
+	//For while
+	condition := true
+	for condition {
+		fmt.Println(condition)
+		condition = false
+	}
 }
