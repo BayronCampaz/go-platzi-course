@@ -1,6 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
+
+func getSquareArea(side float64) float64 {
+	return side * side
+}
+
+func getCircleArea(radius float64) float64 {
+	return math.Pow(radius, 2) * math.Pi
+}
+
+func getTrapezoidArea(shortBase, longBase, height float64) float64 {
+	return ((shortBase + longBase) / 2) * height
+}
 
 func main() {
 
@@ -23,9 +38,7 @@ func main() {
 
 	fmt.Println(a, b, c, d)
 
-	const squareBase = 5
-	squareArea := squareBase * squareBase
-
-	fmt.Println(squareArea)
-
+	fmt.Println(getSquareArea(5))
+	fmt.Println(getCircleArea(7))
+	fmt.Println(getTrapezoidArea(4, 8, 6))
 }
