@@ -2,23 +2,29 @@ package main
 
 import (
 	"fmt"
-	pk "go-platzi-course/mypackage"
+	"sync"
+	"time"
 )
 
+func say(text string, wg *sync.WaitGroup) {
+	defer wg.Done()
+	fmt.Println(text)
+}
+
 func main() {
-	square := pk.Square{}
-	square.SetBase(4)
 
-	rectangle := pk.Rectangle{}
-	rectangle.SetBase(2)
-	rectangle.SetHeight(6)
+	fmt.Println("Adios")
 
-	circle := pk.Circle{}
-	circle.SetRadius(5)
+	var wg sync.WaitGroup
 
-	shapes := []pk.Shape{square, rectangle, circle}
+	wg.Add(1)
+	go say("world", &wg)
 
-	for _, value := range shapes {
-		fmt.Println(value.Area())
-	}
+	wg.Wait()
+
+	go func(text string) { // Funciona anonima
+		fmt.Println(text)
+	}("Adios")
+
+	time.Sleep(time.Second * 1)
 }
