@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math"
+	"strconv"
 )
 
 func getSquareArea(side float64) float64 {
@@ -53,4 +55,11 @@ func main() {
 		fmt.Println(condition)
 		condition = false
 	}
+
+	//Convert text o number
+	value, err := strconv.Atoi("53")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(value)
 }
