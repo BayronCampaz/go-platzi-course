@@ -5,48 +5,20 @@ import (
 	pk "go-platzi-course/mypackage"
 )
 
-type pc struct {
-	ram   int
-	disk  int
-	brand string
-}
-
-func (myPC pc) ping() {
-	fmt.Println(myPC.brand, "pong")
-}
-
-func (myPC *pc) duplicateRAM() {
-	myPC.ram = myPC.ram * 2
-}
-
-func (myPC pc) String() string {
-	return fmt.Sprintf("This pc %s have %d GB of RAM and %d GB of storage", myPC.brand, myPC.ram, myPC.disk)
-}
-
 func main() {
-	myCar := pk.Car{Brand: "Tesla", Year: 2020}
-	fmt.Println(myCar)
-	pk.PrintMessage("This works")
+	square := pk.Square{}
+	square.SetBase(4)
 
-	//Pointers
-	a := 50
-	b := &a
+	rectangle := pk.Rectangle{}
+	rectangle.SetBase(2)
+	rectangle.SetHeight(6)
 
-	fmt.Println(b)
-	fmt.Println(*b)
+	circle := pk.Circle{}
+	circle.SetRadius(5)
 
-	*b = 100
-	fmt.Println(a)
+	shapes := []pk.Shape{square, rectangle, circle}
 
-	myPc := pc{ram: 8, disk: 516, brand: "HP"}
-	fmt.Println(myPc)
-	myPc.ping()
-
-	fmt.Println(myPc)
-	myPc.duplicateRAM()
-
-	fmt.Println(myPc)
-	myPc.duplicateRAM()
-
-	fmt.Println(myPc)
+	for _, value := range shapes {
+		fmt.Println(value.Area())
+	}
 }
