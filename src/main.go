@@ -2,64 +2,54 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"math"
-	"strconv"
+	"strings"
 )
-
-func getSquareArea(side float64) float64 {
-	return side * side
-}
-
-func getCircleArea(radius float64) float64 {
-	return math.Pow(radius, 2) * math.Pi
-}
-
-func getTrapezoidArea(shortBase, longBase, height float64) float64 {
-	return ((shortBase + longBase) / 2) * height
-}
 
 func main() {
 
-	//Constant declaration
-	const pi float64 = 3.14
-	const pi2 = 3.1415
+	// Array
+	var array [4]int
+	array[0] = 1
+	array[1] = 2
+	fmt.Println(array, len(array), cap(array))
 
-	//Variable declaration
-	base := 10
-	var heigth int = 15
-	var area int
+	// Slice
+	slice := []int{1, 2, 3, 4, 5, 6}
+	fmt.Println(slice, len(slice), cap(slice))
 
-	fmt.Println(base, heigth, area)
+	// Slide methods
+	fmt.Println(slice[0])
+	fmt.Println(slice[:3])
+	fmt.Println(slice[2:4])
+	fmt.Println(slice[4:])
 
-	//Zero values
-	var a int
-	var b float64
-	var c string
-	var d bool
+	// Append
+	slice = append(slice, 7)
+	fmt.Println(slice)
 
-	fmt.Println(a, b, c, d)
+	// Append list
+	newSlice := []int{8, 9, 10}
+	slice = append(slice, newSlice...)
 
-	fmt.Println(getSquareArea(5))
-	fmt.Println(getCircleArea(7))
-	fmt.Println(getTrapezoidArea(4, 8, 6))
+	mySlice := []string{"How", "you", "doing"}
 
-	//For conditional
-	for i := 10; i > 0; i-- {
-		fmt.Println(i)
+	for i, value := range mySlice {
+		fmt.Println(i, value)
 	}
 
-	//For while
-	condition := true
-	for condition {
-		fmt.Println(condition)
-		condition = false
+	word := "kayaK"
+	fmt.Println(isPalindrome(word))
+}
+
+func isPalindrome(word string) bool {
+	result := true
+	word = strings.ToLower(word)
+	for i := 0; i <= len(word)/2; i++ {
+		if word[i] != word[len(word)-i-1] {
+			result = false
+			break
+		}
 	}
 
-	//Convert text o number
-	value, err := strconv.Atoi("53")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(value)
+	return result
 }
