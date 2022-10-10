@@ -19,6 +19,10 @@ func (myPC *pc) duplicateRAM() {
 	myPC.ram = myPC.ram * 2
 }
 
+func (myPC pc) String() string {
+	return fmt.Sprintf("This pc %s have %d GB of RAM and %d GB of storage", myPC.brand, myPC.ram, myPC.disk)
+}
+
 func main() {
 	myCar := pk.Car{Brand: "Tesla", Year: 2020}
 	fmt.Println(myCar)
