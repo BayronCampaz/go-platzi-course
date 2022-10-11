@@ -2,29 +2,17 @@ package main
 
 import (
 	"fmt"
-	"sync"
-	"time"
 )
 
-func say(text string, wg *sync.WaitGroup) {
-	defer wg.Done()
+func say(text string, c chan<- string) {
+	c <- text
 	fmt.Println(text)
 }
 
 func main() {
+	c := make(chan string, 1)
+	fmt.Println("Hello")
 
-	fmt.Println("Adios")
-
-	var wg sync.WaitGroup
-
-	wg.Add(1)
-	go say("world", &wg)
-
-	wg.Wait()
-
-	go func(text string) { // Funciona anonima
-		fmt.Println(text)
-	}("Adios")
-
-	time.Sleep(time.Second * 1)
+	go say("Bye", c)
+	fmt.Println(<-c)
 }
